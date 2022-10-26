@@ -1,17 +1,24 @@
+import sys
+sys.path.append('./')
 import util.file_util as ft
+import requests
+from bs4 import BeautifulSoup
+from util.time_utils import clock
+from tqdm import tqdm
+
+def translage(info, text):
+    return
 
 
-a = ft.get_all_lines('../data/trans/papago_enko.txt')
-b = ft.get_all_lines('../data/enko.txt')
-print(len(a))
-print(a[:10])
+src_lang = 'ko'
+tgt_lang = 'en'
 
-print(len(b))
-print(b[:10])
+text = '안녕하세요.'
+url = f'https://papago.naver.com/?sk={src_lang}&tk={tgt_lang}&hn=0&st={text}'
+req = requests.get(url)
+html = req.text
 
-c = ''
-for s in b[:10]:
-    c = c + '\n' +s
-print(c)
-
-b_1 = '\n'.join(b[10:20])
+soup = BeautifulSoup(html, 'html.parser')
+print(soup)
+e = soup.select('txtTarget > span')
+print(e)

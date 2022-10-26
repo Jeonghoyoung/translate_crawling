@@ -124,4 +124,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    t = ['안녕']
+    a = papago_trans(t, 'ko', 'en')
+    print(a)
